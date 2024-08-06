@@ -71,6 +71,7 @@
             clmInteriorColor = new ColumnHeader();
             clmNumOfDoors = new ColumnHeader();
             clmSeatingCapacity = new ColumnHeader();
+            clmAction = new ColumnHeader();
             tabAddCustomer = new TabPage();
             btnSaveCustomer = new MaterialSkin.Controls.MaterialButton();
             txtAddress = new MaterialSkin.Controls.MaterialMultiLineTextBox2();
@@ -591,7 +592,7 @@
             tblCarDetails.AutoSizeTable = false;
             tblCarDetails.BackColor = Color.FromArgb(255, 255, 255);
             tblCarDetails.BorderStyle = BorderStyle.None;
-            tblCarDetails.Columns.AddRange(new ColumnHeader[] { clmBrand, clmModel, clmYear, clmBodyStyle, clmEngine, clmTransmission, clmDrivetrain, clmFuelType, clmMileage, clmVIN, clmColor, clmInteriorColor, clmNumOfDoors, clmSeatingCapacity });
+            tblCarDetails.Columns.AddRange(new ColumnHeader[] { clmBrand, clmModel, clmYear, clmBodyStyle, clmEngine, clmTransmission, clmDrivetrain, clmFuelType, clmMileage, clmVIN, clmColor, clmInteriorColor, clmNumOfDoors, clmSeatingCapacity, clmAction });
             tblCarDetails.Depth = 0;
             tblCarDetails.FullRowSelect = true;
             tblCarDetails.Location = new Point(21, 277);
@@ -604,16 +605,17 @@
             tblCarDetails.TabIndex = 0;
             tblCarDetails.UseCompatibleStateImageBehavior = false;
             tblCarDetails.View = View.Details;
+            tblCarDetails.DoubleClick += tblCarDetails_DoubleClick;
             // 
             // clmBrand
             // 
             clmBrand.Text = "Brand";
-            clmBrand.Width = 150;
+            clmBrand.Width = 100;
             // 
             // clmModel
             // 
             clmModel.Text = "Model";
-            clmModel.Width = 150;
+            clmModel.Width = 100;
             // 
             // clmYear
             // 
@@ -638,7 +640,7 @@
             // clmDrivetrain
             // 
             clmDrivetrain.Text = "Drivetrain";
-            clmDrivetrain.Width = 150;
+            clmDrivetrain.Width = 120;
             // 
             // clmFuelType
             // 
@@ -672,8 +674,13 @@
             // 
             // clmSeatingCapacity
             // 
-            clmSeatingCapacity.Text = "Seating Capacity";
-            clmSeatingCapacity.Width = 150;
+            clmSeatingCapacity.Text = "Seat Count";
+            clmSeatingCapacity.Width = 100;
+            // 
+            // clmAction
+            // 
+            clmAction.Text = "Action";
+            clmAction.Width = 150;
             // 
             // tabAddCustomer
             // 
@@ -1073,5 +1080,6 @@
         private ColumnHeader clmAddress;
         private MaterialSkin.Controls.MaterialButton btnCarTableLoad;
         private MaterialSkin.Controls.MaterialButton btnCustomerTableLoad;
+        private ColumnHeader clmAction;
     }
 }

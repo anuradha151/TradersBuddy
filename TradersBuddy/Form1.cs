@@ -1,6 +1,7 @@
 using MaterialSkin;
 using MaterialSkin.Controls;
 using Microsoft.EntityFrameworkCore;
+using System.Windows.Forms;
 using TradersBuddy.Model;
 using WinFormEFDemo.Data;
 
@@ -11,6 +12,14 @@ namespace TradersBuddy
         public Form1()
         {
             InitializeComponent();
+            initializeMaterialSkin();
+            setNewCarFormTabIndexes();
+            setNewCustomerFormTabIndexes();
+
+        }
+
+        private void initializeMaterialSkin()
+        {
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
@@ -22,6 +31,38 @@ namespace TradersBuddy
                 TextShade.WHITE
                 );
         }
+
+        private void setNewCustomerFormTabIndexes()
+        {
+            txtFullName.TabIndex = 15;
+            txtEmail.TabIndex = 16;
+            txtMobileNumber1.TabIndex = 17;
+            txtMobileNumber2.TabIndex = 18;
+            txtAddress.TabIndex = 19;
+            txtCity.TabIndex = 20;
+            txtNIC.TabIndex = 21;
+            btnSaveCustomer.TabIndex = 22;
+        }
+
+        private void setNewCarFormTabIndexes()
+        {
+            cmbCarBrand.TabIndex = 0;
+            txtCarModel.TabIndex = 1;
+            txtManufacturedYear.TabIndex = 2;
+            cmbBodyStyle.TabIndex = 3;
+            txtEngine.TabIndex = 4;
+            txtTransmission.TabIndex = 5;
+            cmbDrivetrain.TabIndex = 6;
+            cmbFuelType.TabIndex = 7;
+            txtMileage.TabIndex = 8;
+            txtVIN.TabIndex = 9;
+            txtColor.TabIndex = 10;
+            txtInteriorColor.TabIndex = 11;
+            txtNumberOfDoors.TabIndex = 12;
+            txtSeatingCapacity.TabIndex = 13;
+            btnSaveCar.TabIndex = 14;
+        }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -264,6 +305,36 @@ namespace TradersBuddy
             }
 
         }
+
+        public static int parentX, parentY;
+
+        private void tblCarDetails_DoubleClick(object sender, EventArgs e)
+        {
+           // I want to show the FormEditCarDetails As a modal
+           Form modalBackground = new Form();
+           using(FormEditCarDetails formEditCarDetails = new FormEditCarDetails())
+           {
+               modalBackground.StartPosition = FormStartPosition.Manual;
+                modalBackground.FormBorderStyle = FormBorderStyle.None;
+                modalBackground.Opacity = .50d;
+                modalBackground.BackColor = Color.Black;
+                modalBackground.Size = this.Size;
+                modalBackground.Location = this.Location;
+                modalBackground.ShowInTaskbar = false;
+                modalBackground.Show();
+                formEditCarDetails.Owner = modalBackground;
+
+                parentX = this.Location.X;
+                parentY = this.Location.Y;
+
+                formEditCarDetails.ShowDialog();
+                modalBackground.Dispose();
+           }
+
+
+        }
+
+       
     }
 }
 
