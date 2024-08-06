@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Windows.Forms;
 using TradersBuddy.Model;
 using WinFormEFDemo.Data;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace TradersBuddy
 {
@@ -146,6 +147,7 @@ namespace TradersBuddy
             {
                 var listViewItem = new ListViewItem(new[]
                 {
+                        car.Id.ToString(),
                         car.Brand,
                         car.Model,
                         car.Year,
@@ -241,6 +243,7 @@ namespace TradersBuddy
             {
                 var listViewItem = new ListViewItem(new[]
                 {
+                        customer.Id.ToString(),
                         customer.FullName,
                         customer.Email,
                         customer.MobileNumber1,
@@ -310,11 +313,16 @@ namespace TradersBuddy
 
         private void tblCarDetails_DoubleClick(object sender, EventArgs e)
         {
-           // I want to show the FormEditCarDetails As a modal
-           Form modalBackground = new Form();
-           using(FormEditCarDetails formEditCarDetails = new FormEditCarDetails())
-           {
-               modalBackground.StartPosition = FormStartPosition.Manual;
+
+
+            ListViewItem selectedItem = tblCarDetails.SelectedItems[0]; // Assuming car ID is in a column
+            int carId = int.Parse(selectedItem.SubItems[0].Text);
+
+            // I want to show the FormEditCarDetails As a modal
+            Form modalBackground = new Form();
+            using (FormEditCarDetails formEditCarDetails = new FormEditCarDetails(carId))
+            {
+                modalBackground.StartPosition = FormStartPosition.Manual;
                 modalBackground.FormBorderStyle = FormBorderStyle.None;
                 modalBackground.Opacity = .50d;
                 modalBackground.BackColor = Color.Black;
@@ -329,12 +337,37 @@ namespace TradersBuddy
 
                 formEditCarDetails.ShowDialog();
                 modalBackground.Dispose();
-           }
+            }
 
 
         }
 
-       
+        private void tblCustomerDetails_DoubleClick(object sender, EventArgs e)
+        {
+            ListViewItem selectedItem = tblCustomerDetails.SelectedItems[0]; // Assuming customer ID is in a column
+            int customerId = int.Parse(selectedItem.SubItems[0].Text);
+
+            Form modalBackground = new Form();
+            using (FormEditCustomer formEditCarDetails = new FormEditCustomer(customerId))
+            {
+                modalBackground.StartPosition = FormStartPosition.Manual;
+                modalBackground.FormBorderStyle = FormBorderStyle.None;
+                modalBackground.Opacity = .50d;
+                modalBackground.BackColor = Color.Black;
+                modalBackground.Size = this.Size;
+                modalBackground.Location = this.Location;
+                modalBackground.ShowInTaskbar = false;
+                modalBackground.Show();
+                formEditCarDetails.Owner = modalBackground;
+
+                parentX = this.Location.X;
+                parentY = this.Location.Y;
+
+                formEditCarDetails.ShowDialog();
+                modalBackground.Dispose();
+            }
+
+        }
     }
 }
 

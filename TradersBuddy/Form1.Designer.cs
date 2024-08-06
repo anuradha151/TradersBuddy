@@ -57,6 +57,7 @@
             materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
             txtCarSearch = new MaterialSkin.Controls.MaterialTextBox();
             tblCarDetails = new MaterialSkin.Controls.MaterialListView();
+            clmId = new ColumnHeader();
             clmBrand = new ColumnHeader();
             clmModel = new ColumnHeader();
             clmYear = new ColumnHeader();
@@ -71,7 +72,6 @@
             clmInteriorColor = new ColumnHeader();
             clmNumOfDoors = new ColumnHeader();
             clmSeatingCapacity = new ColumnHeader();
-            clmAction = new ColumnHeader();
             tabAddCustomer = new TabPage();
             btnSaveCustomer = new MaterialSkin.Controls.MaterialButton();
             txtAddress = new MaterialSkin.Controls.MaterialMultiLineTextBox2();
@@ -86,6 +86,7 @@
             btnCustomerTableLoad = new MaterialSkin.Controls.MaterialButton();
             txtCustomerSearch = new MaterialSkin.Controls.MaterialTextBox();
             tblCustomerDetails = new MaterialSkin.Controls.MaterialListView();
+            clmCustomerId = new ColumnHeader();
             clmFullName = new ColumnHeader();
             clmEmail = new ColumnHeader();
             clmMobileNumber1 = new ColumnHeader();
@@ -592,7 +593,7 @@
             tblCarDetails.AutoSizeTable = false;
             tblCarDetails.BackColor = Color.FromArgb(255, 255, 255);
             tblCarDetails.BorderStyle = BorderStyle.None;
-            tblCarDetails.Columns.AddRange(new ColumnHeader[] { clmBrand, clmModel, clmYear, clmBodyStyle, clmEngine, clmTransmission, clmDrivetrain, clmFuelType, clmMileage, clmVIN, clmColor, clmInteriorColor, clmNumOfDoors, clmSeatingCapacity, clmAction });
+            tblCarDetails.Columns.AddRange(new ColumnHeader[] { clmId, clmBrand, clmModel, clmYear, clmBodyStyle, clmEngine, clmTransmission, clmDrivetrain, clmFuelType, clmMileage, clmVIN, clmColor, clmInteriorColor, clmNumOfDoors, clmSeatingCapacity });
             tblCarDetails.Depth = 0;
             tblCarDetails.FullRowSelect = true;
             tblCarDetails.Location = new Point(21, 277);
@@ -606,6 +607,10 @@
             tblCarDetails.UseCompatibleStateImageBehavior = false;
             tblCarDetails.View = View.Details;
             tblCarDetails.DoubleClick += tblCarDetails_DoubleClick;
+            // 
+            // clmId
+            // 
+            clmId.Text = "Id";
             // 
             // clmBrand
             // 
@@ -676,11 +681,6 @@
             // 
             clmSeatingCapacity.Text = "Seat Count";
             clmSeatingCapacity.Width = 100;
-            // 
-            // clmAction
-            // 
-            clmAction.Text = "Action";
-            clmAction.Width = 150;
             // 
             // tabAddCustomer
             // 
@@ -927,7 +927,7 @@
             tblCustomerDetails.AutoSizeTable = false;
             tblCustomerDetails.BackColor = Color.FromArgb(255, 255, 255);
             tblCustomerDetails.BorderStyle = BorderStyle.None;
-            tblCustomerDetails.Columns.AddRange(new ColumnHeader[] { clmFullName, clmEmail, clmMobileNumber1, clmMobileNumber2, clmNIC, clmCity, clmAddress });
+            tblCustomerDetails.Columns.AddRange(new ColumnHeader[] { clmCustomerId, clmFullName, clmEmail, clmMobileNumber1, clmMobileNumber2, clmNIC, clmCity, clmAddress });
             tblCustomerDetails.Depth = 0;
             tblCustomerDetails.FullRowSelect = true;
             tblCustomerDetails.Location = new Point(22, 297);
@@ -940,6 +940,11 @@
             tblCustomerDetails.TabIndex = 6;
             tblCustomerDetails.UseCompatibleStateImageBehavior = false;
             tblCustomerDetails.View = View.Details;
+            tblCustomerDetails.DoubleClick += tblCustomerDetails_DoubleClick;
+            // 
+            // clmCustomerId
+            // 
+            clmCustomerId.Text = "Id";
             // 
             // clmFullName
             // 
@@ -1080,6 +1085,7 @@
         private ColumnHeader clmAddress;
         private MaterialSkin.Controls.MaterialButton btnCarTableLoad;
         private MaterialSkin.Controls.MaterialButton btnCustomerTableLoad;
-        private ColumnHeader clmAction;
+        private ColumnHeader clmId;
+        private ColumnHeader clmCustomerId;
     }
 }
